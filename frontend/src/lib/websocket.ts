@@ -19,7 +19,7 @@ export class MarketWSClient {
 
   private getWsUrl(): string {
     if (typeof window !== 'undefined') {
-      const host = window.location.hostname || '127.0.0.1';
+      const host = (window.location.hostname === 'localhost' || !window.location.hostname) ? '127.0.0.1' : window.location.hostname;
       return `ws://${host}:8000/api/v1/ws/market`;
     }
     return 'ws://127.0.0.1:8000/api/v1/ws/market';
